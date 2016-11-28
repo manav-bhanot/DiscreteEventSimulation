@@ -13,7 +13,9 @@ public class Constants {
 	public static final int START_TIME = 0;
 
 	// END TIME IN HOURS
-	public static final int END_TIME = 100;
+	public static final int END_TIME_100 = 100;
+	
+	public static final int END_TIME_200 = 200;
 
 	public static final int GOOD_WEATHER_MEAN = 90;
 
@@ -40,4 +42,10 @@ public class Constants {
 	public static final double EXP_LAMBDA = 2;
 	
 	public static final double POISSON_LAMBDA = 2;
+	
+	public static final int NO_OF_SAMPLES = 10000;
+	
+	public static final double DELTA_CI = 0.90;
+	
+	public static final int CONTROL_VARIABLE_SAMPLES = 1000;
 }
