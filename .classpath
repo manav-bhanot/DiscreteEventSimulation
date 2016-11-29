@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_77">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_101">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="libs/commons-math3-3.6.1-bin/commons-math3-3.6.1/commons-math3-3.6.1-tools.jar"/>
-	<classpathentry kind="lib" path="libs/commons-math3-3.6.1-bin/commons-math3-3.6.1/commons-math3-3.6.1.jar" sourcepath="libs/commons-math3-3.6.1-bin/commons-math3-3.6.1/commons-math3-3.6.1-sources.jar">
+	<classpathentry kind="lib" path="libs/mallet-2.0.8/mallet.jar" sourcepath="libs/mallet-2.0.8/src.zip"/>
+	<classpathentry kind="lib" path="libs/apache-commons-math3-3.6.1/commons-math3-3.6.1.jar" sourcepath="libs/apache-commons-math3-3.6.1/commons-math3-3.6.1-sources.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/DiscreteEventSimulation/libs/commons-math3-3.6.1-bin/commons-math3-3.6.1/commons-math3-3.6.1-javadoc.jar!/"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/DiscreteEventSimulation/libs/apache-commons-math3-3.6.1/commons-math3-3.6.1-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="libs/mallet.jar" sourcepath="libs/src.zip"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

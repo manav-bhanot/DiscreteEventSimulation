@@ -123,7 +123,7 @@ public class SimulateWolfCommunication {
 			if (nextMessageArrivalTime > Constants.END_TIME_100 * 60) {
 				for (int i = 1; i <= k; i++) {
 					messageArrivedEvent = new Event(EventCodeEnum.EventCode.getMessageArrivedEventCode(),
-							nextMessageArrivalTime + k, messageID);
+							nextMessageArrivalTime + (k * 60), messageID);
 					futureEventList.add(messageArrivedEvent);
 
 					this.setMessageArrivedCount(this.messageArrivedCount + 1);
