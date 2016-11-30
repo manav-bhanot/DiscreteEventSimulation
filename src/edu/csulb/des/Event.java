@@ -9,12 +9,22 @@ package edu.csulb.des;
  */
 public class Event implements Comparable<Event>{
 
+	/**
+	 *  Stores the Event Code. The various event codes are :
+	 *  MA : MessageArrived
+	 *  MP : MessageProcessed
+	 *  ML : MessageLost
+	 *  GW : GoodWeather
+	 *  BW : BadWeather
+	 */	
 	private String eventcode;
-	private Integer time;
+	
+	// Store the time at which this event is scheduled to execute/occur/happen
+	private Double time;
 
 	/**
-	 * If eventCode = MA, id = msgId If eventCode = MP, id = channelId which
-	 * just finished processing the message
+	 * If eventCode = MA, id = msgId 
+	 * If eventCode = MP, id = channelId which just finished processing the message
 	 */
 	private Integer id;
 
@@ -31,7 +41,7 @@ public class Event implements Comparable<Event>{
 	 * @param time
 	 * @param messageId
 	 */
-	public Event(String eventcode, Integer time, Integer id) {
+	public Event(String eventcode, Double time, Integer id) {
 		super();
 		this.eventcode = eventcode;
 		this.time = time;
@@ -56,7 +66,7 @@ public class Event implements Comparable<Event>{
 	/**
 	 * @return the time
 	 */
-	public Integer getTime() {
+	public Double getTime() {
 		return time;
 	}
 
@@ -64,7 +74,7 @@ public class Event implements Comparable<Event>{
 	 * @param time
 	 *            the time to set
 	 */
-	public void setTime(Integer time) {
+	public void setTime(Double time) {
 		this.time = time;
 	}
 

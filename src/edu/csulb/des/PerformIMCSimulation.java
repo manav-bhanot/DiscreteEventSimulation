@@ -10,38 +10,43 @@ import cc.mallet.util.Univariate;
  * @author Manav
  *
  */
-public class PerformIMCSimulation {
-
-	
+public class PerformIMCSimulation {	
 
 	private SimulateWolfCommunication simulateWolfCommunication;
 	
+	// Counts the total number of messages lost in the simulation
 	private int totalMessagesLost = 0;
+	
+	// Counts the total number of messages sent in the simulation
 	private int totalMessagesSent = 0;
 
+	// Counts the average number of messages lost in the simulation	
 	private double averageMessagesLost = 0.0;
 
+	// Stores the probability that a message is lost
 	private double probabilityAMessageIsLost = 0.0;
 	
 	// k copies of the original message to be sent to Wolf Communications
 	int k;
 	
-	// Stores the ci_left value of the 0.90 confidence interval
+	// Stores the probability of the lost messages as part of Exercise 2 which is used in the strategy applied for Exercise 4.
 	double p2;
 
 	public PerformIMCSimulation() {
-		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * n : total number of samples to be collected
+	 * delta : confidence interval which is 0.9 here
+	 * isStrategyApplied : checks if the strategy chosen by Alice is applied to the simulation
+	 * 
+	 * @param n
+	 * @param delta
+	 * @param isStrategyApplied
+	 */
 	private void performIMCSimulation(int n, double delta, boolean isStrategyApplied) {
 		
-		/*int totalMessagesLost = 0;
-		int totalMessagesSent = 0;
-
-		double averageMessagesLost = 0.0;
-
-		double probabilityAMessageIsLost = 0.0;*/
-		
+		// X set -> stores the number of lost messages in each simulation run of 10000 simulations
 		double X[] = new double[n];
 
 		try {
@@ -55,17 +60,34 @@ public class PerformIMCSimulation {
 					
 					// Perform 10000 simulation until the condition in while is true
 					for (int i = 0; i < n; i++) {
+						
+						// Instantiate an object of SimulateWolfCommunication class
 						simulateWolfCommunication = new SimulateWolfCommunication();
+						
+						// Initializes the System State and adds the initial known events into the FEL
 						simulateWolfCommunication.initiateSystemState();
+						
+						// Generates all the message arrivals as per the distribution given and adds the message arrived events in the Priority Queue FEL
+						// Generate the message arrivals in the interval [0,100] using the Poisson Distribution having lambda = 2 messages/hr
+						// Thus the inter arrival times will follow an exponential distribution with lambda = 0.5 hrs between the arrival of 2 messages
 						simulateWolfCommunication.generateMessageArrivals(k);
+						
+						// Runs the simulation by applying the strategy suggested by Alice.
 						simulateWolfCommunication.runSimulation(k);
 						
+						// Stores the number of lost messages in ith run of the simulation
 						X[i] = simulateWolfCommunication.getMessageLostCount();
 
+						// Keeps track of the total messages lost.
 						totalMessagesLost = totalMessagesLost + simulateWolfCommunication.getMessageLostCount();
+						
+						// Keeps track of the total messages sent.
 						totalMessagesSent = totalMessagesSent + simulateWolfCommunication.getMessageArrivedCount();
 					}
-					System.out.println((((double) totalMessagesLost / (double) totalMessagesSent)) + " : " + this.p2 / 2.0);
+					System.out.println("For k = " + k +  " : " + (((double) totalMessagesLost / (double) totalMessagesSent)) + " : " + this.p2 / 2.0);
+					System.out.println("Total Messages lost in " + n + " simulations are : " + totalMessagesLost);
+					System.out.println("Total Messages sent in " + n + " simulations are : " + totalMessagesSent);
+					System.out.println();
 				} while ((((double) totalMessagesLost / (double) totalMessagesSent)) > this.p2 / 2.0);
 				
 				System.out.println("The least value of k required to satisfy the given condition is : " + k + "\n");
@@ -73,13 +95,17 @@ public class PerformIMCSimulation {
 				for (int i = 0; i < n; i++) {
 					simulateWolfCommunication = new SimulateWolfCommunication();
 
+					// Initialies the System State
 					simulateWolfCommunication.initiateSystemState();
-					// Generate the message arrivals in the interval [0,100] using the Poisson Distribution having lambda = 2 messages/hr
-					// Thus the inter arrival times will follow an exponential distribution with lambda = 0.5 hrs between the arrival of 2 messages
 					
+					// Generate the message arrivals in the interval [0,100] using the Poisson Distribution having lambda = 2 messages/hr
+					// Thus the inter arrival times will follow an exponential distribution with lambda = 0.5 hrs between the arrival of 2 messages					
 					simulateWolfCommunication.generateMessageArrivals();
+					
+					// Run the simulation
 					simulateWolfCommunication.runSimulation();					
 					
+					// X[i] -> total number of messages lost in the ith run of the simulation
 					X[i] = simulateWolfCommunication.getMessageLostCount();
 
 					totalMessagesLost = totalMessagesLost + simulateWolfCommunication.getMessageLostCount();
@@ -188,13 +214,6 @@ public class PerformIMCSimulation {
 			// Z[i] = X[i] + c * (M[i] - mu)
 
 			double Z[] = new double[n];
-			
-			/*int totalMessagesLost = 0;
-			int totalMessagesSent = 0;
-
-			double averageMessagesLost = 0.0;
-
-			double probabilityAMessageIsLost = 0.0;*/
 
 			for (int i = 0; i < n; i++) {
 				simulateWolfCommunication = new SimulateWolfCommunication();
@@ -242,8 +261,7 @@ public class PerformIMCSimulation {
 
 			System.out
 					.println(delta + " confindence interval : " + confidenceIntervalLeft + " , " + confidenceIntervalRight);
-		} finally {
-			
+		} finally {			
 			// Clears up the state for this simulation
 			
 			this.totalMessagesLost = 0;
@@ -278,10 +296,7 @@ public class PerformIMCSimulation {
 		System.out.println("\n\nEXCERCISE 4");
 		System.out.println(
 				"Printing the strategic IMC simulation as per the strategy given in EXERCISE 4 \n");
-		imcSimulation.performIMCSimulation(Constants.NO_OF_SAMPLES, Constants.DELTA_CI, true);
-		
-		
-		
+		imcSimulation.performIMCSimulation(Constants.NO_OF_SAMPLES, Constants.DELTA_CI, true);		
 	}
 
 }

@@ -5,18 +5,39 @@ package edu.csulb.des;
 
 /**
  * @author Manav
- *
+ * 
+ * Class used to store the state of the system at a particular time T = t
  */
 public class SystemState {
 
+	// Stores whether the system is in a Good Weather State.
+	// true value indicates that the system is currently operating in good weather conditions
 	private boolean isGoodWeather;
+	
+	// Stores whether the system is in a Bad Weather State.
+	// true value indicates that the system is currently operating in bad weather conditions
 	private boolean isBadWeather;
+	
+	// Checks if Channel 1 is busy
+	// true value indicates that channel 1 is busy
 	private boolean isChannelOneBusy;
+	
+	// Checks if Channel 2 is busy
+	// true value indicates that channel 2 is busy
 	private boolean isChannelTwoBusy;
+	
+	// Checks if Channel 3 is busy
+	// true value indicates that channel 3 is busy
 	private boolean isChannelThreeBusy;
-	private int goodWeatherDuration;
-	private int badWeatherDuration;
-	private int processingTime;
+	
+	// Stores the duration of the Good Weather in minutes
+	private double goodWeatherDuration;
+	
+	// Stores the duration if the bad weather in minutes
+	private double badWeatherDuration;
+	
+	// Stores the processing time which depends on whether the system is in good weather state or bad weather state
+	private double processingTime;
 
 	/**
 	 * @return the isGoodWeather
@@ -96,7 +117,7 @@ public class SystemState {
 	/**
 	 * @return the goodWeatherDuration
 	 */
-	public int getGoodWeatherDuration() {
+	public double getGoodWeatherDuration() {
 		return goodWeatherDuration;
 	}
 
@@ -104,14 +125,14 @@ public class SystemState {
 	 * @param goodWeatherDuration
 	 *            the goodWeatherDuration to set
 	 */
-	public void setGoodWeatherDuration(int goodWeatherDuration) {
+	public void setGoodWeatherDuration(double goodWeatherDuration) {
 		this.goodWeatherDuration = goodWeatherDuration;
 	}
 
 	/**
 	 * @return the badWeatherDuration
 	 */
-	public int getBadWeatherDuration() {
+	public double getBadWeatherDuration() {
 		return badWeatherDuration;
 	}
 
@@ -119,14 +140,14 @@ public class SystemState {
 	 * @param badWeatherDuration
 	 *            the badWeatherDuration to set
 	 */
-	public void setBadWeatherDuration(int badWeatherDuration) {
+	public void setBadWeatherDuration(double badWeatherDuration) {
 		this.badWeatherDuration = badWeatherDuration;
 	}
 
 	/**
 	 * @return the processingTime
 	 */
-	public int getProcessingTime() {
+	public double getProcessingTime() {
 		return processingTime;
 	}
 
@@ -134,7 +155,7 @@ public class SystemState {
 	 * @param processingTime
 	 *            the processingTime to set
 	 */
-	public void setProcessingTime(int processingTime) {
+	public void setProcessingTime(double processingTime) {
 		this.processingTime = processingTime;
 	}
 
